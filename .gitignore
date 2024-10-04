@@ -1,4 +1,5 @@
 /.phpunit.cache
+/.jetclient
 /node_modules
 /public/build
 /public/hot
@@ -6,6 +7,7 @@
 /storage/*.key
 /vendor
 .env
+/package-lock.json
 .env.backup
 .env.production
 .phpactor.json
