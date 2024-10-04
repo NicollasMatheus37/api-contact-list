@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Actions\Auth\ForgotPasswordAction;
 use App\Actions\Auth\LoginAction;
 use App\Actions\Auth\LogoutAction;
 use App\Actions\Auth\RegisterUserAction;
-use App\Http\Controllers\Controller;
+use App\Actions\Auth\ResetPasswordAction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -40,6 +40,8 @@ class AuthController extends Controller
 
     public function resetPassword(Request $request): JsonResponse
     {
+        ResetPasswordAction::execute($request);
 
+        return response()->json(['message' => 'Password reset successfully']);
     }
 }
