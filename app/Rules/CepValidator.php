@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Actions\Cep\SearchForCepAction;
+use App\Actions\Address\SearchForCepAction;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 

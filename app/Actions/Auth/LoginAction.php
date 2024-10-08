@@ -41,7 +41,7 @@ class LoginAction
         $authConditions = ['email' => $request->email, 'password' => $request->password, 'is_active' => true];
 
         if (!Auth::attempt($authConditions)) {
-            return abort(401, 'Invalid credentials');
+            abort(401, 'Invalid credentials');
         }
 
         $user = User::where('email', $request->email)->first();
@@ -55,6 +55,6 @@ class LoginAction
 
     public static function generateToken(User $user): string
     {
-        return 'Bearer '. $user->createToken('auth_token')->plainTextToken;
+        return $user->createToken('auth_token')->plainTextToken;
     }
 }

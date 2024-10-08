@@ -14,7 +14,7 @@ class PhoneValidator implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!preg_match('/^\(\d{2}\) \d{4,5}-\d{4}$/', $value)) {
+        if (strlen($value) === 11) {
             $fail("The :attribute is invalid.");
         }
     }

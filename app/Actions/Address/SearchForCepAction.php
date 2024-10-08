@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Actions\Cep;
+namespace App\Actions\Address;
 
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class SearchForCepAction
 {
-    public static function execute(Request $request): ?Collection
+    public static function execute(string $cep): ?Collection
     {
-        $cep = $request->get('cep');
-
-        // validate CEP
         try {
             $response = Http::get("https://viacep.com.br/ws/{$cep}/json/");
 
-            return $response->collect();
+            $collect = $response->collect();
+
+            return new Collection([
+                'address' => $collect->get('logradouro'),
+                'district' => $collect->get('bairro'),
+                'city' => $collect->get('localidade'),
+                'state' => $collect->get('uf'),
+            ]);
         } catch (Exception $e) {
             self::handleException($e);
         }
