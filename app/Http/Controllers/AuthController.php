@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Auth\ForgotPasswordAction;
 use App\Actions\Auth\LoginAction;
 use App\Actions\Auth\LogoutAction;
 use App\Actions\Auth\RegisterUserAction;
-use App\Actions\Auth\ResetPasswordAction;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -29,19 +27,5 @@ class AuthController extends Controller
         LogoutAction::execute($request);
 
         return response()->json(['message' => 'User logged out']);
-    }
-
-    public function forgotPassword(Request $request): JsonResponse
-    {
-        ForgotPasswordAction::execute($request);
-
-        return response()->json(['message' => 'Forgot password mail sent']);
-    }
-
-    public function resetPassword(Request $request): JsonResponse
-    {
-        ResetPasswordAction::execute($request);
-
-        return response()->json(['message' => 'Password reset successfully']);
     }
 }
